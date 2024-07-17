@@ -1,11 +1,11 @@
 
 const Gameboard = function () {
     this.board = 
-    ['', '', '',
-     '', '', '',
-     '', '', ''];
+    ['', '', 'x',
+     '', '', 'x',
+     '', '', 'x'];
 
-    this.checkWin = function (char) {
+    this.checkWin = function (char, name) {
         const winCombinations = [
             // row winning
             [0, 1, 2],
@@ -26,7 +26,7 @@ const Gameboard = function () {
             const [a, b, c] = winCombo;
             if (this.board[a] === char && this.board[b] === char && this.board[c] === char) {
                 console.log(this.board);
-                console.log('You won!');
+                console.log('You won ' + name + '!');
             }
             
         }
@@ -45,12 +45,12 @@ function createPlayer (name, char) {
     return { playerName, char, getScore, addScore };
 }
 
-const josh = createPlayer("Josh", 'X');
-const jacinto = createPlayer("Jacinto", 'O');
+const player1 = createPlayer("Juancito", 'x');
+const player2 = createPlayer("Jacinto", 'O');
 
 let tictactoe = new Gameboard();
 
-tictactoe.checkWin(josh.char)
+tictactoe.checkWin(player1.char, player1.playerName)
 
 
 
