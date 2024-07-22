@@ -5,7 +5,7 @@ const Gameboard = function () {
      '', '', '',
      '', '', ''];
 
-    this.checkWin = function (char, name) {
+    this.checkWin = function (char) {
         const winCombinations = [
             // row winning
             [0, 1, 2],
@@ -26,10 +26,11 @@ const Gameboard = function () {
             const [a, b, c] = winCombo;
             if (this.board[a] === char && this.board[b] === char && this.board[c] === char) {
                 console.log(this.board);
-                console.log('You won ' + name + '!');
+                return true;
             }
             
         }
+        return false;
     }
 } 
 
@@ -77,10 +78,8 @@ function startGame() {
     const player1 = createPlayer(inputPlayer1, 'X');
     const player2 = createPlayer(inputPlayer2, 'O');
     let turn = 0;
+    let tictactoe = new Gameboard();
 
-    // let tictactoe = new Gameboard();
-
-    // tictactoe.checkWin(player1.char, player1.playerName)
 
     main.innerHTML = '';
     let contentPrompt = `   
@@ -103,22 +102,38 @@ function startGame() {
             </section>
     `;
     main.innerHTML = contentPrompt;
+    // target.dataset.index
     let gameContainer = document.getElementById("gameContainer");
     gameContainer.addEventListener('click', (e) => {
+        let target = e.target;
         if (turn === 0) {
-            if (e.target.className == "container") {
-                if (e.target.textContent === "") {
-                    e.target.textContent = player1.char;
+            if (target.className == "container") {
+                if (target.textContent === "") {
+                    target.textContent = player1.char;
                     turn++;
+                    tictactoe.board[parseInt(target.dataset.index)] = player1.char
+                    console.log(tictactoe.board);
+                    let check = tictactoe.checkWin(player1.char, player1.playerName)
+                    if (check === true) {
+                        let lastWinner = document.querySelector('.last-winner');
+                        lastWinner.textContent = `You won ${player1.playerName}!`;
+                    }
                 }
 
             }
 
         } else {
-            if (e.target.className == "container") {
-                if (e.target.textContent === "") {
-                    e.target.textContent = player2.char;
+            if (target.className == "container") {
+                if (target.textContent === "") {
+                    target.textContent = player2.char;
                     turn--;
+                    tictactoe.board[parseInt(target.dataset.index)] = player2.char
+                    console.log(tictactoe.board);
+                    let check = tictactoe.checkWin(player2.char, player2.playerName)
+                    if (check === true) {
+                        let lastWinner = document.querySelector('.last-winner');
+                        lastWinner.textContent = `You won ${player2.playerName}!`;
+                    }
                 }
             }
         }
