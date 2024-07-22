@@ -7,19 +7,21 @@ body {
 }
 
 main {
-    position: relative;
-    top: 200px;
     margin: auto;
     width: auto;
     text-align: center;
 }
 
 #start-header {
+    position: relative;
     font-size: 100px;
     color: #EF5A6F;
+    top: 100px;
 }
 
 #start-button {
+    position: relative;
+    top: 100px;
     font-family: "Bebas Neue", sans-serif;
     font-size: 28px;
     padding: 30px;
@@ -37,6 +39,98 @@ main {
    box-shadow: 0px 0px 20px #D4BDAC;
 }
 
+
+#custom-prompt {
+    margin: 90px;
+}
+
+.prompt-content {
+    margin: 20px;
+}
+
+.prompt-content label {
+    font-size: 22px;
+    color: #EF5A6F;
+}
+
+.inputText {
+    background-color: #D4BDAC;
+    border: 0px;
+    border-radius: 4px;
+    height: 24px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 20px;
+    color: #fff;
+}
+
+#submit-button {
+    height: 50px;
+    width: 100px;
+    border-radius: 14px;
+    border: 0px;
+    background-color: #D4BDAC;
+    color: #536493;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+#submit-button:hover {
+    cursor: pointer;
+}
+
+#header-game {
+    font-size: 80px;
+    color: #EF5A6F;
+    margin: 0;
+}
+
+.score.player1{
+    color: #EF5A6F;
+    font-size: 20px;
+    font-weight: 900;
+    position: absolute;
+    left: 30px;
+    top: 100px;
+}
+
+.score.player2{
+    color: #EF5A6F;
+    font-size: 20px;
+    font-weight: 900;
+    position: absolute;
+    left: 30px;
+    top: 200px;
+}
+
+.last-winner {
+    color: #EF5A6F;
+    font-size: 20px;
+    position: absolute;
+    top: 100px;
+    right: 100px;
+}
+
+#gameContainer {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(80px, 200px));
+    grid-template-rows: repeat(3, minmax(80px, 200px));
+    justify-content: center;
+    gap: 4px;
+}
+
+.container {
+    height: 200px;
+    width: 200px;
+    background-color: #536493;
+    border: 1px #FFF1DB solid;
+    font-size: 100px;
+    font-family: sans-serif;
+    align-content: center;
+    color: #D4BDAC;
+}
 
 /* 
 #EF5A6F red

@@ -6,12 +6,27 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>TicTacToe</title>
         <link rel="stylesheet" href="main.css">
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
     </head>        
     <body>
         <main>
-            <h1 id="start-header">Tic Tac Toe!</h1>
-            <button id="start-button">Start Game</button>
+            <h1 id="header-game">Tic Tac Toe!</h1>
+            <!-- <h1 id="start-header">Tic Tac Toe!</h1>
+            <button id="start-button">Start Game</button> -->
+            <p class="score player1">Player 1 Score: 30pts</p>
+            <p class="score player2">Player 2 Score: 2pts</p>
+            <p class="last-winner">Player... won</p>
+            <section id="gameContainer">
+                <div class="container">X</div>
+                <div class="container">X</div>
+                <div class="container">X</div>
+                <div class="container"></div>
+                <div class="container">O</div>
+                <div class="container">O</div>
+                <div class="container"></div>
+                <div class="container"></div>
+                <div class="container">O</div>
+            </section>
         </main>
     </body>
 </html>
