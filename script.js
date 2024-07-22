@@ -80,8 +80,27 @@ function startGame() {
     const inputPlayer1 = document.getElementById("first-player").value;
     const inputPlayer2 = document.getElementById("second-player").value;
     main.innerHTML = '';
-    console.log('Player 1:', inputPlayer1);
-    console.log('Player 2:', inputPlayer2);
+    // <p class="last-winner">Player... won</p>
+    let contentPrompt = `   
+            <h1 id="header-game">Tic Tac Toe!</h1>
+            <div id="p-information">
+                <p class="score player1">${inputPlayer1} Score: 0pts</p>
+                <p class="score player2">${inputPlayer2} Score: 0pts</p>
+            </div>
+            <section id="gameContainer">
+                <div class="container"></div>
+                <div class="container"></div>
+                <div class="container"></div>
+                <div class="container"></div>
+                <div class="container"></div>
+                <div class="container"></div>
+                <div class="container"></div>
+                <div class="container"></div>
+                <div class="container"></div>
+            </section>
+    `;
+    main.innerHTML = contentPrompt;
+    
 }
 
 let main = document.querySelector('main');
