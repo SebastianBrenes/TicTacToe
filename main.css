@@ -134,6 +134,14 @@ main {
     font-family: sans-serif;
     align-content: center;
     color: #D4BDAC;
+    box-shadow: 0px 0px 0px black;
+    transition: box-shadow 0.3s;
+
+}
+
+.container:hover {
+    background-color: #596ba3;
+    box-shadow: 0px 0px 15px black;
 }
 
 /* 
