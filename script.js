@@ -5,6 +5,13 @@ const Gameboard = function () {
      '', '', '',
      '', '', ''];
 
+    this.resetBoard = function () {
+        this.board = 
+    ['', '', '',
+     '', '', '',
+     '', '', ''];
+    }
+
     this.checkWin = function (char) {
         const winCombinations = [
             // row winning
@@ -25,7 +32,6 @@ const Gameboard = function () {
         for (const winCombo of winCombinations) {
             const [a, b, c] = winCombo;
             if (this.board[a] === char && this.board[b] === char && this.board[c] === char) {
-                console.log(this.board);
                 return true;
             }
             
@@ -80,14 +86,13 @@ function startGame() {
     let turn = 0;
     let tictactoe = new Gameboard();
 
-
     main.innerHTML = '';
     let contentPrompt = `   
             <h1 id="header-game">Tic Tac Toe!</h1>
             <div id="p-information">
-                <p class="score player1">${inputPlayer1} Score: 0pts</p>
-                <p class="score player2">${inputPlayer2} Score: 0pts</p>
-                <p class="last-winner">Player ${inputPlayer1} starts</p>
+                <p class="score player1">${player1.playerName} - Score: ${player1.getScore()}pts</p>
+                <p class="score player2">${player2.playerName} - Score: ${player2.getScore()}pts</p>
+                <p class="last-winner">Player ${player1.playerName} starts</p>
             </div>
             <section id="gameContainer">
                 <div data-index="0" class="container"></div>
@@ -112,11 +117,27 @@ function startGame() {
                     target.textContent = player1.char;
                     turn++;
                     tictactoe.board[parseInt(target.dataset.index)] = player1.char
-                    console.log(tictactoe.board);
                     let check = tictactoe.checkWin(player1.char, player1.playerName)
+                    console.log(tictactoe.board);
+                    console.log(check);
                     if (check === true) {
                         let lastWinner = document.querySelector('.last-winner');
+                        let scorePlayer1 = document.querySelector('.score.player1');
+                        player1.addScore();
+                        scorePlayer1.textContent = `${player1.playerName} - Score: ${player1.getScore()}pts`;
                         lastWinner.textContent = `You won ${player1.playerName}!`;
+                        gameContainer.innerHTML = `
+                            <div data-index="0" class="container"></div>
+                            <div data-index="1" class="container"></div>
+                            <div data-index="2" class="container"></div>
+                            <div data-index="3" class="container"></div>
+                            <div data-index="4" class="container"></div>
+                            <div data-index="5" class="container"></div>
+                            <div data-index="6" class="container"></div>
+                            <div data-index="7" class="container"></div>
+                            <div data-index="8" class="container"></div>
+                        `;
+                        tictactoe.resetBoard();
                     }
                 }
 
@@ -127,12 +148,28 @@ function startGame() {
                 if (target.textContent === "") {
                     target.textContent = player2.char;
                     turn--;
-                    tictactoe.board[parseInt(target.dataset.index)] = player2.char
+                    tictactoe.board[parseInt(target.dataset.index)] = player2.char;
+                    let check = tictactoe.checkWin(player2.char, player2.playerName);
                     console.log(tictactoe.board);
-                    let check = tictactoe.checkWin(player2.char, player2.playerName)
+                    console.log(check);
                     if (check === true) {
                         let lastWinner = document.querySelector('.last-winner');
+                        let scorePlayer2 = document.querySelector('.score.player2');
+                        player2.addScore();
+                        scorePlayer2.textContent = `${player2.playerName} - Score: ${player2.getScore()}pts`;
                         lastWinner.textContent = `You won ${player2.playerName}!`;
+                        gameContainer.innerHTML = `
+                        <div data-index="0" class="container"></div>
+                        <div data-index="1" class="container"></div>
+                        <div data-index="2" class="container"></div>
+                        <div data-index="3" class="container"></div>
+                        <div data-index="4" class="container"></div>
+                        <div data-index="5" class="container"></div>
+                        <div data-index="6" class="container"></div>
+                        <div data-index="7" class="container"></div>
+                        <div data-index="8" class="container"></div>
+                        `;
+                        tictactoe.resetBoard();
                     }
                 }
             }
