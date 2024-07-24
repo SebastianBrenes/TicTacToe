@@ -12,6 +12,7 @@ const Gameboard = function () {
      '', '', ''];
     }
 
+
     this.checkWin = function (char) {
         const winCombinations = [
             // row winning
@@ -38,6 +39,23 @@ const Gameboard = function () {
         }
         return false;
     }
+
+    this.checkDraw = function (char1, char2) {
+        let draw = 0;
+        for (const chars of this.board) {
+            if (chars != '') {
+                draw++;
+            }
+        }
+        console.log('sali del bucle de draw');
+        if (draw === 9 && this.checkWin(char1) == false && this.checkWin(char2) == false) {
+           this.resetBoard();
+           return true;
+        }
+
+        return false;
+    }
+
 } 
 
 
@@ -117,10 +135,27 @@ function startGame() {
                     target.textContent = player1.char;
                     turn++;
                     tictactoe.board[parseInt(target.dataset.index)] = player1.char
-                    let check = tictactoe.checkWin(player1.char, player1.playerName)
+                    let check = tictactoe.checkWin(player1.char)
                     console.log(tictactoe.board);
                     console.log(check);
-                    if (check === true) {
+                    if (tictactoe.checkDraw(player1.char, player2.char) == true) {
+                        let lastWinner = document.querySelector('.last-winner');
+                        lastWinner.textContent = `Its a Draw!`;
+                        gameContainer.innerHTML = `
+                            <div data-index="0" class="container"></div>
+                            <div data-index="1" class="container"></div>
+                            <div data-index="2" class="container"></div>
+                            <div data-index="3" class="container"></div>
+                            <div data-index="4" class="container"></div>
+                            <div data-index="5" class="container"></div>
+                            <div data-index="6" class="container"></div>
+                            <div data-index="7" class="container"></div>
+                            <div data-index="8" class="container"></div>
+                        `;
+                        turn = 0;
+                    }
+                    if (check) {
+                        turn = 0;
                         let lastWinner = document.querySelector('.last-winner');
                         let scorePlayer1 = document.querySelector('.score.player1');
                         player1.addScore();
@@ -149,10 +184,27 @@ function startGame() {
                     target.textContent = player2.char;
                     turn--;
                     tictactoe.board[parseInt(target.dataset.index)] = player2.char;
-                    let check = tictactoe.checkWin(player2.char, player2.playerName);
+                    let check = tictactoe.checkWin(player2.char);
                     console.log(tictactoe.board);
                     console.log(check);
-                    if (check === true) {
+                    if (tictactoe.checkDraw(player1.char, player2.char) == true) {
+                        let lastWinner = document.querySelector('.last-winner');
+                        lastWinner.textContent = `Its a Draw!`;
+                        gameContainer.innerHTML = `
+                            <div data-index="0" class="container"></div>
+                            <div data-index="1" class="container"></div>
+                            <div data-index="2" class="container"></div>
+                            <div data-index="3" class="container"></div>
+                            <div data-index="4" class="container"></div>
+                            <div data-index="5" class="container"></div>
+                            <div data-index="6" class="container"></div>
+                            <div data-index="7" class="container"></div>
+                            <div data-index="8" class="container"></div>
+                        `;
+                        turn = 0;
+                    }
+                    if (check) {
+                        turn = 0;
                         let lastWinner = document.querySelector('.last-winner');
                         let scorePlayer2 = document.querySelector('.score.player2');
                         player2.addScore();
