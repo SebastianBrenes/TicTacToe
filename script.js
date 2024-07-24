@@ -80,11 +80,11 @@ function promptPlayers() {
         <div id="custom-prompt">
             <div class="prompt-content">
                 <label for="first-player">Enter name of Player 1:</label>
-                <input type="text" id="first-player" class="inputText" required>
+                <input type="text" id="first-player" class="inputText" value="Player 1" required>
             </div>
             <div class="prompt-content">
                 <label for="second-player">Enter name of Player 2:</label>
-                <input type="text" id="second-player" class="inputText" required>
+                <input type="text" id="second-player" class="inputText" value="Player 2" required>
             </div>
             <button type="submit" id="submit-button">Submit</button>
         </div>
